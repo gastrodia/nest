@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import Card from '../components/card';
-
-
 
 import { Table, Button } from 'antd';
 import 'antd/dist/antd.less'
-import { getSocketInstance, getURLObj,request, getSocketByURL	 } from '../util';
+import { getSocketInstance, getURLObj,request, getSocketByURL	 } from '../../util';
+import { fetchBirds } from './actions';
+
 
 const columns = [{
 	title: 'host',
@@ -21,8 +20,14 @@ const columns = [{
 },];
 
 
+fetchBirds();
 
-export default class App extends React.Component {
+import { connect } from 'react-redux';
+@connect(
+    state => state,
+    // dispatch => bindActionCreators(actions, dispatch)
+)
+export default class Birds extends React.Component {
 	state = {
 		selectedRowKeys: [], // Check here to configure the default column
 		loading: false,
@@ -42,21 +47,6 @@ export default class App extends React.Component {
 		this.setState({ selectedRowKeys });
 	}
 
-
-	componentDidMount() {
-		var url = getURLObj();
-		var socket = new WebSocket(url.query.server + '/birds');
-		socket.onopen = ()=>{
-			socket.addEventListener("message",(e)=>{
-				var data = JSON.parse(e.data || {})
-				this.setState({data:data})
-			})	
-		}
-		// var socket = getSocketByURL(url.query.server + '/birds');
-		// socket.on("message",(data)=>{
-		// 	debugger
-		// })
-	}
 	render() {
 		const { loading, selectedRowKeys } = this.state;
 		const rowSelection = {
@@ -64,9 +54,10 @@ export default class App extends React.Component {
 			onChange: this.onSelectChange,
 		};
 		const hasSelected = selectedRowKeys.length > 0;
+		const {birds} = this.props;
 		return (
-			<div>
-				<div style={{ marginBottom: 16 }}>
+			<div  style={{ padding: 20 }}>
+				<div  style={{ padding: 20 }}>
 					<Button
 						type="primary"
 						onClick={this.start}
@@ -79,7 +70,7 @@ export default class App extends React.Component {
 						{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
 					</span>
 				</div>
-				<Table rowSelection={rowSelection} columns={columns} dataSource={this.state.data} />
+				<Table rowSelection={rowSelection} columns={columns} dataSource={birds} />
 			</div>
 		);
 	}

@@ -2,18 +2,32 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
 import GAnalytics from 'ganalytics';
 import './index.less';
-import { BrowserRouter,Router } from 'react-router-dom'
-import createHistory from 'history/createBrowserHistory'
+import { BrowserRouter, Router } from 'react-router-dom'
 
-const history = createHistory()
+
+import store from './store'
+import { Provider } from 'react-redux'
+
+import history from './history';
+import { ConnectedRouter, push } from 'react-router-redux';
+
+
 const onChange = obj => window.ga && ga.send('pageview', { dp: obj.url });
 let elem, App;
 function init() {
 	App = require('./containers').default;
 	elem = ReactDOM.render(
-		<Router onChange={onChange} history={history}>
-			<App/>
-	  	</Router>
+		<Provider store={store}>
+					<ConnectedRouter history={history}
+			// basename="/"
+			// forceRefresh={false}
+			// getUserConfirmation={getConfirmation()}
+			// keyLength={12}
+			>
+				<App></App>
+			</ConnectedRouter>
+		
+		</Provider>
 		, document.getElementById('root'), elem);
 }
 
