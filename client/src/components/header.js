@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import { getURLObj } from '../util';
 
 export default function () {
 	return (
 		<header className="header">
-			<h1>Preact Starter</h1>
+			<h1>Nest System</h1>
 			<nav>
-				<Link to="/">Home</Link>
-				<Link to="/blog">Blog</Link>
-				<Link to="/credit">Credit</Link>
+				<Link to={`/?server=${getURLObj().query.server}`}>机器列表</Link>
 			</nav>
 		</header>
 	)

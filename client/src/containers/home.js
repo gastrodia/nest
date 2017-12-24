@@ -2,14 +2,16 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import Card from '../components/card';
 
-import io from 'socket.io-client';	
-const socket = io('http://localhost:3001');
+
 
 import { Table, Button } from 'antd';
 import 'antd/dist/antd.less'
+import { getSocketInstance, getURLObj,request, getSocketByURL	 } from '../util';
+
 const columns = [{
 	title: 'host',
 	dataIndex: 'host',
+	render: (text,record) => <Link to={`/shell?server=${getURLObj().query.server}&pid=${record.localPort}`}>{text}</Link>
 }, {
 	title: 'localPort',
 	dataIndex: 'localPort',
@@ -42,13 +44,18 @@ export default class App extends React.Component {
 
 
 	componentDidMount() {
-		socket.on('data',(data)=>{
-			this.setState({ data: data })
-		})
-
-		socket.on('newTarget',(target)=>{
-			this.setState({data:this.state.data.concat(target)})
-		})
+		var url = getURLObj();
+		var socket = new WebSocket(url.query.server + '/birds');
+		socket.onopen = ()=>{
+			socket.addEventListener("message",(e)=>{
+				var data = JSON.parse(e.data || {})
+				this.setState({data:data})
+			})	
+		}
+		// var socket = getSocketByURL(url.query.server + '/birds');
+		// socket.on("message",(data)=>{
+		// 	debugger
+		// })
 	}
 	render() {
 		const { loading, selectedRowKeys } = this.state;
@@ -66,8 +73,8 @@ export default class App extends React.Component {
 						disabled={!hasSelected}
 						loading={loading}
 					>
-						Reload
-          </Button>
+						Run Script
+         			</Button>
 					<span style={{ marginLeft: 8 }}>
 						{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
 					</span>

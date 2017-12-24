@@ -8,6 +8,7 @@ import Error404 from './errors/404';
 import Credit from './credit';
 import Blog from './blog';
 import Header from '../components/header';
+import Shell from './shell/Shell';
 
 
 
@@ -20,9 +21,7 @@ export default function (props){
 		<main id="content">
 			<Switch>
 				<Route exact path="/" component={Home} />
-				<Route exact path="/blog" component={Blog}/>
-				<Route exact path="/blog/:title" component={Article}/>
-				<Route exact path="/credit" component={Credit}/>
+				<Route exact path="/shell" component={Shell}/>
 				<Route  default component={Error404}/>
 			</Switch>
 		</main>
