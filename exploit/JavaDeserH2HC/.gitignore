@@ -1,0 +1,7 @@
+.DS_Store
+*.log
+._.DS_Store
+.idea
+.idea/
+*.class
+*.ser

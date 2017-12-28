@@ -1,0 +1,132 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Java",
+            "type": "java",
+            "request": "launch",
+            "stopOnEntry": true,
+            "jdkPath": "${env:JAVA_HOME}/bin",
+            "cwd": "${fileDirname}",
+            "startupClass": "${fileBasenameNoExtension}",
+            "classpath": [
+                ".",
+                "${fileDirname}"
+            ]
+        },
+        {
+            "name": "Java Console App",
+            "type": "java",
+            "request": "launch",
+            "stopOnEntry": true,
+            "jdkPath": "${env:JAVA_HOME}/bin",
+            "cwd": "${fileDirname}",
+            "startupClass": "${fileBasenameNoExtension}",
+            "classpath": [
+                ".",
+                "${fileDirname}"
+            ],
+            "externalConsole": true
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-DnsWithCommonsCollections",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "DnsWithCommonsCollections",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ExampleCommonsCollections1",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "ExampleCommonsCollections1",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ExampleTransformersWithLazyMap",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "ExampleTransformersWithLazyMap",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ExploitGadgetExample1",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "ExploitGadgetExample1",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ReverseShellCommonsCollectionsHashMap",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "ReverseShellCommonsCollectionsHashMap",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-SleepExample",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "SleepExample",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-TestDeserialize",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "TestDeserialize",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-TestSerialize",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "TestSerialize",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-VulnerableHTTPServer",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "VulnerableHTTPServer",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Attach)",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 0
+        }
+    ]
+}
