@@ -1,7 +1,12 @@
 
 # http://os.51cto.com/art/201507/487057_all.htm
 # https://segmentfault.com/a/1190000008945039
+
+#docker 
 # http://blog.csdn.net/weixin_36806758/article/details/53318261
+
+#docker compose
+# https://www.cnblogs.com/neptunemoon/p/6512121.html
 
 # 使用DaoCloud的Ubuntu镜像
 FROM daocloud.io/library/ubuntu:14.04
