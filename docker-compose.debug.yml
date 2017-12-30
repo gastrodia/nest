@@ -11,6 +11,14 @@ services:
       - 9229:9229
     volumes:
       - .:/container/app
-
+    depends_on:
+      - jboss
     ## set your startup file here
     command:  nodemon --inspect=0.0.0.0:9229 main.js
+  jboss:
+    image: jboss
+    build: ./vulapps/jboss
+    environment:
+      JBOSS_PASS: admin123
+    ports:
+      - 8000:8000
