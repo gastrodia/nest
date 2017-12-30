@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/tutum/jboss/~/dockerfile/
 FROM tifayuki/java:7
 MAINTAINER Feng Honglin <hfeng@tutum.co>
 
