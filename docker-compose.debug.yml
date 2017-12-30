@@ -13,11 +13,15 @@ services:
       - .:/container/app
     depends_on:
       - jboss
+    links:
+      - jboss
     ## set your startup file here
-    command:  nodemon --inspect=0.0.0.0:9229 main.js
+    command:  nodemon --inspect=0.0.0.0:9229 --inspect-brk main.js
   jboss:
-    image: jboss
-    build: ./vulapps/jboss
+    #image: jboss
+    image: tutum/jboss:as7    #compose will pull image ,if it not exist
+    #build: ./vulapps/jboss
+    #build: tutum/jboss:as7
     environment:
       JBOSS_PASS: admin123
     ports:

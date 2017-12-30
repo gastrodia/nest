@@ -34,7 +34,7 @@ module.exports = function (config) {
         })
     }
 
-   // linkTargets();
+    linkTargets();
 
 
     function link(target) {
