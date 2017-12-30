@@ -51,5 +51,7 @@ RUN npm install --production -d --registry=https://registry.npm.taobao.org
 # 添加源代码
 ADD . /app
 
+RUN pip install -r exploit/jexboss/requires.txt
+
 # 运行app.js
 CMD ["node", "/app/_main.js"]
