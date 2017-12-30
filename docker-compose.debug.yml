@@ -1,4 +1,4 @@
-version: '2.1'
+version: '2.0'
 
 services:
   nest:
@@ -9,5 +9,8 @@ services:
     ports:
       - 3000:3000
       - 9229:9229
+    volumes:
+      - .:/container/app
+
     ## set your startup file here
-    command: node --inspect app.js
+    command:  nodemon --inspect=0.0.0.0:9229 main.js

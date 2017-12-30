@@ -40,23 +40,30 @@ RUN sudo apt-get update && sudo apt-get install -y wget
 # 安装pip依赖：setuptools
 RUN sudo apt-get install -y python python-dev python-distribute python-pip
 
+
+
 # 使用淘宝镜像安装Node.js v8.9.3
 RUN wget https://npm.taobao.org/mirrors/node/v8.9.3/node-v8.9.3-linux-x64.tar.gz && \
     tar -C /usr/local --strip-components 1 -xzf node-v8.9.3-linux-x64.tar.gz && \
     rm node-v8.9.3-linux-x64.tar.gz 
 
-WORKDIR /app
+WORKDIR /container
 
 # 安装npm模块
-ADD package.json /app/package.json
+ADD package.json /container/package.json
 
 # 使用淘宝的npm镜像
 RUN npm install --production -d --registry=https://registry.npm.taobao.org
 
-# 添加源代码
-ADD . /app
+RUN npm install -g nodemon --registry=https://registry.npm.taobao.org
 
+WORKDIR /container/app
+# add exploit
+ADD exploit /container/app/exploit
 RUN pip install -r exploit/jexboss/requires.txt
 
+# 添加源代码
+ADD . /container/app
+
 # 运行app.js
-CMD ["node", "/app/_main.js"]
+CMD ["node", "main.js"]

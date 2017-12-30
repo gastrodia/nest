@@ -34,7 +34,7 @@ module.exports = function (config) {
         })
     }
 
-    linkTargets();
+   // linkTargets();
 
 
     function link(target) {
@@ -61,6 +61,9 @@ module.exports = function (config) {
         });
     }
 
+    app.all('/',function(req,res){
+        res.json({ok:456});
+    })
 
     app.ws('/birds', function (ws, req) {
         var data = links.map((link) => {
