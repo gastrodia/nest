@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node _main.js"
+    "start": "sudo docker run -p 3000:3000 alchemy/nest",
+    "build":"sudo docker build -t alchemy/nest ."
   },
   "author": "",
   "license": "ISC",
