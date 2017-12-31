@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-server": "docker-compose -f docker-compose.debug.yml up  --build",
-    "dev-client": "cd client; npm install; npm run watch"
+    "dev-client": "cd client; npm install --registry=https://registry.npm.taobao.org; npm run watch"
   },
   "author": "",
   "license": "ISC",

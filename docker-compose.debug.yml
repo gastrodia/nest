@@ -7,7 +7,7 @@ services:
     environment:
       NODE_ENV: development
     ports:
-      - 3000:3000
+      - 3001:3000
       - 9229:9229
     volumes:
       - .:/container/app
@@ -25,4 +25,4 @@ services:
     environment:
       JBOSS_PASS: admin123
     ports:
-      - 8000:8000
+      - 8000:9990
