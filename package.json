@@ -6,23 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-server": "docker-compose -f docker-compose.debug.yml up  --build",
+    "enter-server":"docker exec -it nest_nest_1 /bin/sh",
     "dev-client": "cd client; npm install --registry=https://registry.npm.taobao.org; npm run watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.17.1",
     "express": "^4.16.2",
+
     "express-ws": "^3.0.0",
     "lodash": "^4.17.4",
-    "node-pty": "^0.7.4",
-    "query-string": "^5.0.1",
-    "redux": "^3.7.2",
-    "socket.io": "^2.0.4",
-    "socket.io-client": "^2.0.4",
-    "url-parse": "^1.2.0",
-    "url-parse-utility": "^1.1.0",
-    "url-parser": "0.0.1",
-    "xterm": "^2.9.2"
+    "node-pty": "^0.7.4"
   }
 }

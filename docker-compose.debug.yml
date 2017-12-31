@@ -16,7 +16,7 @@ services:
     links:
       - jboss
     ## set your startup file here
-    command:  nodemon --inspect=0.0.0.0:9229 --inspect-brk main.js
+    command:  nodemon --inspect=0.0.0.0:9229 main.js
   jboss:
     #image: jboss
     image: tutum/jboss:as7    #compose will pull image ,if it not exist
@@ -25,4 +25,4 @@ services:
     environment:
       JBOSS_PASS: admin123
     ports:
-      - 8000:9990
+      - 8080:8080
