@@ -10,7 +10,7 @@ var shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash';
 
 module.exports = function(host,reverseHost,callback) {
     console.log( ['-vv', '-l', reverseHost.split(':')[1]])
-
+ 
     var ptyProcess = pty.spawn(shell, [], {
         name: 'xterm-color',
         cols: 80,
