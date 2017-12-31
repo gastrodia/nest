@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "init": "cp daemon.json /etc/docker/daemon.json; service docker restart",
     "dev-server": "docker-compose -f docker-compose.debug.yml up  --build",
-    "dev-client": ""
+    "dev-client": "cd client; npm install; npm run watch"
   },
   "author": "",
   "license": "ISC",
