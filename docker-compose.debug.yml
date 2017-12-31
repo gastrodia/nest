@@ -19,7 +19,8 @@ services:
     command:  nodemon --inspect=0.0.0.0:9229 main.js
   jboss:
     #image: jboss
-    image: tutum/jboss:as7    #compose will pull image ,if it not exist
+    image: medicean/vulapps:j_jboss_1
+    #image: tutum/jboss:as7    #compose will pull image ,if it not exist
     #build: ./vulapps/jboss
     #build: tutum/jboss:as7
     environment:
