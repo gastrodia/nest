@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-server": "docker-compose -f docker-compose.debug.yml up  --build",
-    "enter-server": "docker exec -it nest_nest_1 /bin/sh",
-    "dev-client": "cd client; npm install --registry=https://registry.npm.taobao.org; npm run watch"
+    "watch": "docker-compose -f docker-compose.debug.yml up  --build",
+    "enter": "docker exec -it nest_nest_1 /bin/sh"
   },
   "author": "",
   "license": "ISC",
