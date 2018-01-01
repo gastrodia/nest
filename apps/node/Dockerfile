@@ -14,9 +14,7 @@ FROM ubuntu:16.04
 # 设置镜像作者
 MAINTAINER gastrodia <gastrodia@outlook.com>
 
-# 设置时区
-RUN sudo sh -c "echo 'Asia/Shanghai' > /etc/timezone" && \
-    sudo dpkg-reconfigure -f noninteractive tzdata
+
 
 # 使用阿里云的Ubuntu镜像
 RUN echo '\n\
@@ -32,9 +30,13 @@ deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted univer
 deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse\n'\
 > /etc/apt/sources.list
 
-
 # 安装 wget
-RUN sudo apt-get update && sudo apt-get install -y wget
+RUN apt-get update && apt-get install -y wget tzdata
+
+# 设置时区
+RUN  sh -c "echo 'Asia/Shanghai' > /etc/timezone" && \
+     dpkg-reconfigure -f noninteractive tzdata
+
 
 # 使用淘宝镜像安装Node.js v8.9.3
 RUN wget https://npm.taobao.org/mirrors/node/v8.9.3/node-v8.9.3-linux-x64.tar.gz && \
