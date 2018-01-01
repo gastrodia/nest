@@ -1,7 +1,7 @@
 FROM gastrodia/jdk:8u151-b12
 
 MAINTAINER gastrodia <gastrodia@outlook.com>
-
+RUN apt install unzip
 # Download jboss from http://jbossas.jboss.org/downloads/
 RUN wget http://download.jboss.org/jbossas/6.1/jboss-as-distribution-6.1.0.Final.zip
 RUN unzip -q jboss-as-distribution-6.1.0.Final.zip
