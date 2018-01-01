@@ -1,13 +1,11 @@
-FROM vulhub/openjdk:oracle-jdk-6
+FROM gastrodia/jdk:8u151-b12
 
-MAINTAINER phithon <root@leavesongs.com>
+MAINTAINER gastrodia <gastrodia@outlook.com>
 
 # Download jboss from http://jbossas.jboss.org/downloads/
-RUN yum install -y unzip wget && \
-    yum clean all && \
-    wget -q http://download.jboss.org/jbossas/6.1/jboss-as-distribution-6.1.0.Final.zip && \
-    unzip -q jboss-as-distribution-6.1.0.Final.zip && \
-    rm jboss-as-distribution-6.1.0.Final.zip
+RUN wget http://download.jboss.org/jbossas/6.1/jboss-as-distribution-6.1.0.Final.zip
+RUN unzip -q jboss-as-distribution-6.1.0.Final.zip
+RUN rm jboss-as-distribution-6.1.0.Final.zip
 
 ADD jmx-console.web.xml /jboss-6.1.0.Final/common/deploy/jmx-console.war/WEB-INF/web.xml
 ADD jmx-console.jboss-web.xml /jboss-6.1.0.Final/common/deploy/jmx-console.war/WEB-INF/jboss-web.xml
