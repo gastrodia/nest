@@ -1,4 +1,4 @@
-FROM gastrodia/jdk:8u151-b12
+FROM gastrodia/jdk
 
 MAINTAINER gastrodia <gastrodia@outlook.com>
 RUN apt install unzip

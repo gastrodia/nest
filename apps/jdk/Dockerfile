@@ -9,7 +9,7 @@
 # https://www.cnblogs.com/neptunemoon/p/6512121.html
 
 
-FROM gastrodia/node:v8.9.3 
+FROM gastrodia/node
 
 # 设置镜像作者
 MAINTAINER gastrodia <gastrodia@outlook.com>
