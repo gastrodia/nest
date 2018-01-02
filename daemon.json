@@ -1,5 +1,4 @@
 {
-    "graph":"/var/lib/docker",
     "registry-mirrors": [
         "https://docker.mirrors.ustc.edu.cn"
     ]
