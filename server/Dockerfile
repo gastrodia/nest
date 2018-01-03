@@ -9,14 +9,7 @@
 # https://www.cnblogs.com/neptunemoon/p/6512121.html
 
 # 使用DaoCloud的Ubuntu镜像
-FROM ./apps/node
-
-
-
-
-# 安装python环境
-# 安装pip依赖：setuptools
-RUN sudo apt-get install -y python python-dev python-distribute python-pip
+FROM gastrodia/python
 
 
 WORKDIR /container
@@ -30,9 +23,6 @@ RUN npm install --production -d --registry=https://registry.npm.taobao.org
 RUN npm install -g nodemon --registry=https://registry.npm.taobao.org
 
 WORKDIR /container/app
-# add exploit
-ADD exploit /container/app/exploit
-RUN pip install -r exploit/jexboss/requires.txt
 
 # 添加源代码
 ADD . /container/app

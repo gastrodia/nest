@@ -15,16 +15,21 @@ services:
       - .:/container/app
     depends_on:
       - jboss
+      - jexboss
     links:
       - jboss
+      - jexboss
     ## set your startup file here
     command:  nodemon --inspect=0.0.0.0:9229 main.js
   jboss:
-    image: jboss
-    build: ./apps/jboss/as-6.1.0
+    image: gastrodia/jboss:as-6.1.0 
     ports:
-      - "9990:9990"
-      - "8080:8080"
+      - 9990:9990
+      - 8080:8080
+  jexboss:
+    image: gastrodia/jexboss
+    ports:
+      - 9000:3000
   # jboss:
   #   #image: jboss
   #   image: medicean/vulapps:j_jboss_1
