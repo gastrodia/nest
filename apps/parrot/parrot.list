@@ -1,0 +1,7 @@
+## stable repository
+# deb http://deb.parrotsec.org/parrot stable main contrib non-free
+# deb-src http://archive.parrotsec.org/parrot stable main contrib non-free
+
+#stable repository
+deb http://mirrors.ustc.edu.cn/parrot/ parrot main contrib non-free
+# deb-src http://mirrors.ustc.edu.cn/parrot/ parrot main contrib non-free
