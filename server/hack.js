@@ -20,7 +20,7 @@ module.exports = function(host,reverseHost,callback) {
        
 
       ptyProcess.write(`nc -vv -l ${reverseHost.split(':')[1]}\r`);
-
+      
       //get(`http://jexboss:3000/?host=${host}&reverse=${reverseHost}`)
       get(`http://h2hc:3000/?url=${host + '/invoker/readonly'}&reverse=${reverseHost}`)
       
