@@ -8,8 +8,10 @@
 #docker compose
 # https://www.cnblogs.com/neptunemoon/p/6512121.html
 
-# 使用DaoCloud的Ubuntu镜像
+# node-gyp依赖python环境
 FROM gastrodia/python
+
+RUN apt install netcat-openbsd -y
 
 
 WORKDIR /container

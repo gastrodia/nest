@@ -15,10 +15,12 @@ services:
       - .:/container/app
     depends_on:
       - jboss
-      - jexboss
+      - h2hc
+      #- jexboss
     links:
       - jboss
-      - jexboss
+      - h2hc
+      #- jexboss
     ## set your startup file here
     command:  nodemon --inspect=0.0.0.0:9229 main.js
   jboss:
@@ -26,10 +28,18 @@ services:
     ports:
       - 9990:9990
       - 8080:8080
-  jexboss:
-    image: gastrodia/jexboss
-    ports:
-      - 9000:3000
+  # jexboss:
+  #   image: gastrodia/jexboss
+  #   ports:
+  #     - 9000:3000
+  h2hc:
+    image: gastrodia/h2hc
+    volumes:
+      - ../exploits/JavaDeserH2HC:/container/app
+    command:  nodemon index.js
+    # ports:
+    #   - 9001:3000
+    
   # jboss:
   #   #image: jboss
   #   image: medicean/vulapps:j_jboss_1

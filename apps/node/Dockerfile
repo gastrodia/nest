@@ -43,3 +43,5 @@ RUN wget https://npm.taobao.org/mirrors/node/v8.9.3/node-v8.9.3-linux-x64.tar.gz
     tar -C /usr/local --strip-components 1 -xzf node-v8.9.3-linux-x64.tar.gz && \
     rm node-v8.9.3-linux-x64.tar.gz 
 
+RUN npm install -g nodemon --registry=https://registry.npm.taobao.org
+
