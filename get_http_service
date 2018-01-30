@@ -1,0 +1,24 @@
+#nmap -T4 -p 80 192.168.120.1/24 
+cat net80.txt | awk '
+  /^Nmap scan report for/ {
+    if (open) {
+      print output;
+    }
+    output="";
+    open=0;
+  }
+
+  {
+    output=output $0 "\n";
+  }
+
+  $2 == "open" {
+    open=1;
+  }
+
+  END {
+    if (open) {
+      print output;
+    }
+  }
+'
